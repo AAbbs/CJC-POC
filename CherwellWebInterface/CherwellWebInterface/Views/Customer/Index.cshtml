@@ -1,76 +1,31 @@
-﻿@{
-    Layout = "~/_SiteLayout.cshtml";
+﻿@model List<Classes.Company>
+@{
     ViewData["Title"] = "Companies";
-    /*if (Request.Params["id"] != null)
+}
+<input type="button" class="create"
+       value="Create New" />
+
+<div id="viewPlaceHolder"></div>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Rec ID</th>
+        <th>Company Name</th>
+        <th colspan="2">Actions</th>
+    </tr>
+    @foreach (var item in Model)
     {
-        Company company = new Company(Request.Params["id"], Request.Params["name"], Request.Params["address"], Request.Params["hotline"]);
-        Cherwell.UpdateCompany(company);
+        <tr>
+            <td>@item.RecId</td>
+            <td>@item.Name</td>
+            <td>
+                <input type="button" class="edit"
+                       value="Edit" />
+            </td>
+            <td>
+                <input type="button" class="delete"
+                       value="Delete" />
+            </td>
+        </tr>
     }
-    List<Company> companyList = Cherwell.GetAllCompanies();*/
-
-}
-
-
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Companies.</h1>
-            </hgroup>
-        </div>
-    </section>
-}
-
-<input type="button" value="Create" onclick="creComp()" />
-<div id="info" hidden>
-    <form action="~/Company.cshtml" method="post" id="comp">
-        <label>Company Name</label><input type="text" id="comp_name" name="name">
-        <br />
-        <label>HotLine</label><input type="checkbox" id="comp_hotline" name="hotline">
-        <br />
-        <label>Address</label><textarea rows="5" id="comp_address" name="address"></textarea>
-        <br />
-        <input type="text" id="comp_id" name="id" hidden />
-        <br />
-        <input type="submit" value="Submit">
-    </form>
-    <div id="Relationships">
-        Subscribers
-        <br />
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#SubscriberSelector">
-            Link
-        </button>
-        <br />
-        <div id="subscribers">
-
-        </div>
-        <br />
-        Services
-        <div id="services">
-
-        </div>
-    </div>
-</div>
-<div id="Companies">
-</div>
-
-<div class="modal fade" id="SubscriberSelector" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Subscriber Selector</h4>
-            </div>
-            <div class="modal-body">
-                <input type="text" id="searchBar" onkeyup="filter()" />
-                <div id="checkboxes">
-                   
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="addSubs()">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+</table>

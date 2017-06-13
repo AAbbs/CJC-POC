@@ -1,0 +1,38 @@
+@model Classes.Company
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Company</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            <div style="float: left;">
+                @Html.CheckBoxFor(model => model.Hotline)
+            </div>
+            @Html.LabelFor(model => model.Hotline)
+        </div>
+        <input type="submit" value="Submit" />
+    </fieldset>
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

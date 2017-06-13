@@ -2,6 +2,7 @@
 {
     public class Subscriber
     {
+
         public string recId;
         public string name;
         public string address;

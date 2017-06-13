@@ -1,46 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Classes
 {
     public class Company
     {
-        public string comp_recId;
-        public string comp_name;
-        public string comp_address;
-        public string comp_hotline;
+        public string RecId { get; set; }
+
+        [Required(ErrorMessage = "Company Name is Required")]
+        [Display(Name = "Company Name")]
+        public string Name { get; set; }
+
+        [Display(Name = "Company Address")]
+        public string Address { get; set; }
+
+        [Display(Name = "Hotline Client")]
+        public bool Hotline { get; set; }
 
         public List<Subscriber> subscribers;
         public List<Service> services;
 
         public Company()
         {
-            comp_recId = "";
-            comp_name = "";
-            comp_address = "";
-            comp_hotline = "";
+            RecId = "";
+            Name = "";
+            Address = "";
+            Hotline = false;
             subscribers = new List<Subscriber>();
             services = new List<Service>();
         }
 
         public Company(string id, string name)
         {
-            comp_recId = id;
-            comp_name = name;
+            RecId = id;
+            Name = name;
             subscribers = new List<Subscriber>();
             services = new List<Service>();
 
         }
 
-        public Company(string recId, string name, string address, string hotline)
+        public Company(string recId, string name, string address, bool hotline)
         {
-            comp_recId = recId;
-            comp_name = name;
-            comp_address = address;
-            comp_hotline = hotline;
+            RecId = recId;
+            Name = name;
+            Address = address;
+            Hotline = hotline;
             subscribers = new List<Subscriber>();
             services = new List<Service>();
         }
+
     }
 }

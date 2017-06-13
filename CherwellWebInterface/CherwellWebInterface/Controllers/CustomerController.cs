@@ -1,37 +1,58 @@
-﻿using Classes;
+﻿using CherwellApi;
+using CherwellWebInterface.Models;
+using Classes;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace CherwellWebInterface.Controllers
 {
     public class CustomerController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            List<Company> companies = CherwellSoapInterface.GetAllCompanies();
+
+            return View(companies);
+        }
+        
+        [HttpPost]
+        public IActionResult Index(CustomerViewModel customerViewModel)
+        {            
+            return View(customerViewModel);
+        }
+        /*
+        [HttpGet]
+        public ActionResult Create()
+        {
+            var company = new Company();
+            return View(company);
+        }*/
+        
+        [HttpPost]
+        public ActionResult Create(Company company)
+        {
+            if (ModelState.IsValid)
+            {
+                CherwellSoapInterface.UpdateCompany(company);
+            }
+            return PartialView(company);
         }
 
-        public IActionResult Index(Company company)
+        [HttpGet]
+        public ActionResult Create(string recId)
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View();
+            Company company;
+            if (recId != null && recId != "")
+            {
+                company = CherwellSoapInterface.GetCompany(recId);
+            }
+            else
+            {
+                company = new Company();
+            }
+            return PartialView(company);
         }
     }
 }
