@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    ViewData["Title"] = "Companies";
+    /*if (Request.Params["id"] != null)
+    {
+        */Company company = new Company(/*Request.Params["id"], Request.Params["name"], Request.Params["address"], Request.Params["hotline"]*/);
+        Cherwell.UpdateCompany(company);/*
+    }
+    List<Company> companyList = Cherwell.GetAllCompanies();*/
+
+}
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Companies.</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+<input type="button" value="Create" onclick="creComp()" />
+<div id="info" hidden>
+    <form action="~/Company.cshtml" method="post" id="comp">
+        <label>Company Name</label><input type="text" id="comp_name" name="name">
+        <br />
+        <label>HotLine</label><input type="checkbox" id="comp_hotline" name="hotline">
+        <br />
+        <label>Address</label><textarea rows="5" id="comp_address" name="address"></textarea>
+        <br />
+        <input type="text" id="comp_id" name="id" hidden />
+        <br />
+        <input type="submit" value="Submit">
+    </form>
+    <div id="Relationships">
+        Subscribers
+        <br />
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#SubscriberSelector">
+            Link
+        </button>
+        <br />
+        <div id="subscribers">
+
+        </div>
+        <br />
+        Services
+        <div id="services">
+
+        </div>
+    </div>
+</div>
+<div id="Companies">
+    @foreach (var item in companyList)
+    {
+        <div id="@item.comp_recId">
+            @item.comp_name
+            <input type="button" value="View/Edit" onclick="anyComp('@item.comp_recId')" />
+            <input type="button" value="Delete" onclick="delComp('@item.comp_recId')" />
+        </div>
+        <br />
+    }
+</div>
+
+<div class="modal fade" id="SubscriberSelector" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Subscriber Selector</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="searchBar" onkeyup="filter()" />
+                <div id="checkboxes">
+                    @foreach (var item in Cherwell.GetAllSubscribers())
+                    {
+                        <div id="checkbox_@item.name" class="subs">
+                            <input type="checkbox" id="@item.recId" /><label id="label_@item.recId">@item.name</label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addSubs()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(
+        function ()
+        {
+            if ("@Request.Params["id"]" != "")
+            {
+            anyComp("@Request.Params["id"]")
+            }
+        }
+    );
+</script>

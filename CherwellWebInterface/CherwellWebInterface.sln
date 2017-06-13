@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CherwellWebInterface", "CherwellWebInterface\CherwellWebInterface.csproj", "{3ADE7590-E3FF-4291-808B-98D5985D9A90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "Classes\Classes.csproj", "{7AB9C495-EFB1-4645-A1A7-633DF7D74C62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CherwellApi", "CherwellApi\CherwellApi.csproj", "{4AE6A5B7-E6CE-4D2A-A898-11ACE34DF911}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ADE7590-E3FF-4291-808B-98D5985D9A90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ADE7590-E3FF-4291-808B-98D5985D9A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ADE7590-E3FF-4291-808B-98D5985D9A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ADE7590-E3FF-4291-808B-98D5985D9A90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AB9C495-EFB1-4645-A1A7-633DF7D74C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AB9C495-EFB1-4645-A1A7-633DF7D74C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AB9C495-EFB1-4645-A1A7-633DF7D74C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AB9C495-EFB1-4645-A1A7-633DF7D74C62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE6A5B7-E6CE-4D2A-A898-11ACE34DF911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE6A5B7-E6CE-4D2A-A898-11ACE34DF911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE6A5B7-E6CE-4D2A-A898-11ACE34DF911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE6A5B7-E6CE-4D2A-A898-11ACE34DF911}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
