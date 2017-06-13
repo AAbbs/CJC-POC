@@ -3,8 +3,8 @@
     ViewData["Title"] = "Companies";
     /*if (Request.Params["id"] != null)
     {
-        */Company company = new Company(/*Request.Params["id"], Request.Params["name"], Request.Params["address"], Request.Params["hotline"]*/);
-        Cherwell.UpdateCompany(company);/*
+        Company company = new Company(Request.Params["id"], Request.Params["name"], Request.Params["address"], Request.Params["hotline"]);
+        Cherwell.UpdateCompany(company);
     }
     List<Company> companyList = Cherwell.GetAllCompanies();*/
 
@@ -52,15 +52,6 @@
     </div>
 </div>
 <div id="Companies">
-    @foreach (var item in companyList)
-    {
-        <div id="@item.comp_recId">
-            @item.comp_name
-            <input type="button" value="View/Edit" onclick="anyComp('@item.comp_recId')" />
-            <input type="button" value="Delete" onclick="delComp('@item.comp_recId')" />
-        </div>
-        <br />
-    }
 </div>
 
 <div class="modal fade" id="SubscriberSelector" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -73,12 +64,7 @@
             <div class="modal-body">
                 <input type="text" id="searchBar" onkeyup="filter()" />
                 <div id="checkboxes">
-                    @foreach (var item in Cherwell.GetAllSubscribers())
-                    {
-                        <div id="checkbox_@item.name" class="subs">
-                            <input type="checkbox" id="@item.recId" /><label id="label_@item.recId">@item.name</label>
-                        </div>
-                    }
+                   
                 </div>
             </div>
             <div class="modal-footer">
@@ -88,15 +74,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(
-        function ()
-        {
-            if ("@Request.Params["id"]" != "")
-            {
-            anyComp("@Request.Params["id"]")
-            }
-        }
-    );
-</script>
