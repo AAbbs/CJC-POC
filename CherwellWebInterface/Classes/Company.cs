@@ -12,6 +12,7 @@ namespace Classes
         public string Name { get; set; }
 
         [Display(Name = "Company Address")]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
 
         [Display(Name = "Hotline Client")]

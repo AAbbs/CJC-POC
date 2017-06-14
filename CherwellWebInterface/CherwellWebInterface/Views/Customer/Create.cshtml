@@ -1,38 +1,62 @@
 @model Classes.Company
 
-@{
-    ViewData["Title"] = "Create";
-}
+<legend>Company</legend>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="editor-field" >
+    @Html.TextBoxFor(model => model.Name)
+    @Html.ValidationMessageFor(model => model.Name)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Address)
+</div>
+<div class="editor-field" >
+    @Html.TextAreaFor(model => model.Address)
+</div>
 
-@using (Html.BeginForm())
-{
-    <fieldset>
-        <legend>Company</legend>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Address)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Address)
-        </div>
+<div class="editor-label">
+    <div style="float: left;" >
+        @Html.CheckBoxFor(model => model.Hotline)
+    </div>
+    @Html.LabelFor(model => model.Hotline)
+</div>
+<div  hidden>
+    @Html.TextBoxFor(model => model.RecId)
+</div>
 
-        <div class="editor-label">
-            <div style="float: left;">
-                @Html.CheckBoxFor(model => model.Hotline)
+<br />
+    <div id="Subscribers">
+    <label>Subscriber(s)</label>
+    @for (int i = 0; i < Model.subscribers.Count; i++)
+    {
+            <div class="editor-field">
+                @Html.TextBoxFor(Model => Model.subscribers[i].name)
             </div>
-            @Html.LabelFor(model => model.Hotline)
-        </div>
-        <input type="submit" value="Save" />
-    </fieldset>
-}
+            <div hidden>
+                @Html.TextBoxFor(Model => Model.subscribers[i].recId)
+            </div>
+    }
+</div>
+<br />
+<div id="Services">
+    <label>Service(s)</label>
+    @for (int x = 0; x < Model.services.Count; x++)
+    {
+            <div class="editor-field">
+                @Html.TextBoxFor(Model => Model.services[x].name)
+            </div>
+            <div hidden>
+                @Html.TextBoxFor(Model => Model.services[x].recId)
+            </div>
+    }
+</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<br />
+
+<input type="button" class="save"
+       value="Save" onclick="save()" />
+
+<div  id="resultPlaceHolder"> 
 </div>
 

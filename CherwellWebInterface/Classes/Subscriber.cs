@@ -1,9 +1,13 @@
-﻿namespace Classes
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Classes
 {
     public class Subscriber
     {
 
         public string recId;
+        [Required(ErrorMessage = "Subscriber Name is Required")]
+        [Display(Name = "Subscriber Name")]
         public string name;
         public string address;
         public string region;

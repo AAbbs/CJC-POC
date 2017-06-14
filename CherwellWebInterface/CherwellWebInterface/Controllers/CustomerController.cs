@@ -22,13 +22,6 @@ namespace CherwellWebInterface.Controllers
         {            
             return View(customerViewModel);
         }
-        /*
-        [HttpGet]
-        public ActionResult Create()
-        {
-            var company = new Company();
-            return View(company);
-        }*/
         
         [HttpPost]
         public ActionResult Create(Company company)
@@ -53,6 +46,17 @@ namespace CherwellWebInterface.Controllers
                 company = new Company();
             }
             return PartialView(company);
+        }
+
+        [HttpGet]
+        public ActionResult Save(string recId, string name, string address, string hotline)
+        {
+            Company company = new Company(recId,name,address,Convert.ToBoolean(hotline));
+
+            string result = CherwellSoapInterface.UpdateCompany(company);
+            
+          
+            return PartialView(result);
         }
     }
 }

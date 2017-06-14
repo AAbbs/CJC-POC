@@ -100,7 +100,7 @@ namespace CherwellApi
             _cherwellService = new CherwellOndemand.api { CookieContainer = new CookieContainer() };
             string response;
             _cherwellService.Login("TestAPI", "TestAPI1");
-            string xml = string.Format(updateCompanyXML, company.Name, company.Address, company.Hotline);
+            string xml = string.Format(updateCompanyXML, company.Name, company.Address, company.Hotline.ToString().ToUpper());
             if (company.RecId != "")
             {
                 response = _cherwellService.UpdateBusinessObject("Company", company.RecId, xml).ToString();

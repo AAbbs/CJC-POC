@@ -4,9 +4,12 @@
 }
 <input type="button" class="create"
        value="Create New" />
+<br />
 
 <div id="viewPlaceHolder"></div>
 
+<input type="text" id="searchBar" onkeyup="filterRows()" />
+<br />
 <table border="1" cellpadding="10">
     <tr>
         <th>Rec ID</th>
@@ -15,7 +18,7 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="rows" id="@item.Name">
             <td>@item.RecId</td>
             <td>@item.Name</td>
             <td>
@@ -29,3 +32,29 @@
         </tr>
     }
 </table>
+
+<div class="modal fade" id="SubscriberSelector" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Subscriber Selector</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="searchBar" onkeyup="filterSubs()" />
+                <div id="checkboxes">
+                    @foreach (var item in CherwellApi.CherwellSoapInterface.GetAllSubscribers())
+                    {
+                        <div id="checkbox_@item.name" class="subs">
+                            <input type="checkbox" id="@item.recId" /><label id="label_@item.recId">@item.name</label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" >Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
