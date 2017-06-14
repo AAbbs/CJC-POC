@@ -32,11 +32,14 @@ function save()
         var name = $("#Name").val();
         var address = $("#Address").val();
         var hotline = $("#Hotline").val();
+    //get subscribers
+    //get services
 
         console.log(recId);
         $.ajax({
             url: '/Customer/Save',
             data: { 'recId': recId, 'name': name, 'address': address, 'hotline': hotline },
+            //need to send both
             type: 'GET',
             cache: false,
             success: function (result) {
@@ -54,8 +57,6 @@ function filterRows()
 
     var search = $("#searchBar").val();
     var length = search.length;
-    console.log(elements);
-    console.log(search);
     if (length > 1) {
         $(elements).hide();
         $("tr[id*='" + search.toUpperCase() + "']").show();
@@ -71,10 +72,8 @@ function filterSubs() {
     var elements = $('#checkboxes');
     $(elements).children().show();
 
-    var search = $("#searchBar").val();
+    var search = $("#searchBarSub").val();
     var length = search.length;
-    console.log(elements);
-    console.log(search);
     if (length > 1) {
         $(elements).children().hide();
         $("div[id*='" + search.toUpperCase() + "']").show();
@@ -82,4 +81,26 @@ function filterSubs() {
     else {
         $(elements).children().show();
     }
+}
+
+function showSubs()
+{
+    var subs = $('.sub-id').children();
+    var checkboxes = $('.subs').children("input");
+    $(checkboxes).prop("checked", false);
+    for (var i = 0; i < subs.length; i++) {
+        $("input[id*='" + subs[i].value + "']").prop("checked", true);
+    }
+}
+
+function addSubs()
+{
+    var subs = $("input:checked").parent()
+    $("#Subscribers").children().remove();
+    for (var i = 0; i < subs.length; i++) {
+        var recId = $("#" + subs[i].id).children("input").prop("id")
+        var name = $("#" + subs[i].id).children("label").prop("innerText")
+        $("#Subscribers").append("<div class='sub-field'><input type='text' value='" + name+ "'></div><div class='sub-id' hidden> <input type='text' value='" + recId+ "'> </div> ");
+    }
+   
 }

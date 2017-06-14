@@ -24,21 +24,27 @@
 <div  hidden>
     @Html.TextBoxFor(model => model.RecId)
 </div>
-
 <br />
-    <div id="Subscribers">
-    <label>Subscriber(s)</label>
+
+<label>Subscriber(s)</label>
+<div id="Subscribers">
     @for (int i = 0; i < Model.subscribers.Count; i++)
     {
-            <div class="editor-field">
+            <div class="sub-field">
                 @Html.TextBoxFor(Model => Model.subscribers[i].name)
             </div>
-            <div hidden>
+            <div  class="sub-id" hidden>
                 @Html.TextBoxFor(Model => Model.subscribers[i].recId)
             </div>
     }
 </div>
+<input type="button" class="new"
+       value="New" onclick="newSub()" />
+<input type="button" data-toggle="modal" data-target="#SubscriberSelector"
+       value="Link" onclick="showSubs()" />
 <br />
+
+<label>Service(s)</label>
 <div id="Services">
     <label>Service(s)</label>
     @for (int x = 0; x < Model.services.Count; x++)

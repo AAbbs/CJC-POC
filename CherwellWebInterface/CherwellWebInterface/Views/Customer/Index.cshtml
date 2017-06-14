@@ -18,7 +18,7 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr class="rows" id="@item.Name">
+        <tr class="rows" id="@item.Name.ToUpper()">
             <td>@item.RecId</td>
             <td>@item.Name</td>
             <td>
@@ -41,7 +41,7 @@
                 <h4 class="modal-title" id="myModalLabel">Subscriber Selector</h4>
             </div>
             <div class="modal-body">
-                <input type="text" id="searchBar" onkeyup="filterSubs()" />
+                <input type="text" id="searchBarSub" onkeyup="filterSubs()" />
                 <div id="checkboxes">
                     @foreach (var item in CherwellApi.CherwellSoapInterface.GetAllSubscribers())
                     {
@@ -52,8 +52,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" >Save changes</button>
+                <button type="button"  data-dismiss="modal">Close</button>
+                <button type="button"  onclick="addSubs()">Save changes</button>
             </div>
         </div>
     </div>
