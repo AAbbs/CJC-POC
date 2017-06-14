@@ -21,21 +21,17 @@ input, select, textarea {
     width: 100%
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width: 767px) {
     .carousel-caption {
         display: none
     }
 }
 
 .BContainer {
-    margin: auto;
-    width: 100%;
-    padding: 10px
+    text-align: center
 }
 
-
 .LContainer {
-    margin: auto;
-    width: 100%;
-    padding: 10px
+    display: inline-block;
+    padding: 5px
 }
